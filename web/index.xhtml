@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <f:event type="preRenderView" listener="{top250.init()}" />
+    <h:outputText value="#{top250.init()}"></h:outputText>
+    <h:head>
+        <title>IMDB TOP 250 watchlist</title>
+    </h:head>
+     <h:body>
+        <H1>IMDB TOP 250 watchlist</H1>
+        <p:accordionPanel style="width: 1160px" activeIndex="null">
+        <p:tab title="User Info">
+            <h:outputText value="user_key: #{top250.getActiveUser().id}"></h:outputText><br></br>
+            <h:outputText value="user_name: #{top250.getActiveUser().name}"></h:outputText><br></br>
+        </p:tab>
+        <p:tab title="Stats">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:chart type="pie" model="#{top250.pieModel}" style="width:400px;height:300px" /><br></br>
+                <p:chart type="line" model="#{top250.dateModel}" style="width:800px;height:300px"/>
+            </h:panelGrid>
+        </p:tab>
+        </p:accordionPanel>
+        <p:tabView style="width: 1150px">
+            <p:tab title="All">
+                <p:dataTable var="m" value="${top250.getMovies()}"
+                     widgetVar="moviesTable"
+                     sortMode="multiple"
+                     resizableColumns="true"
+                     style="margin-bottom:20px;width: 1100px"
+                     rows="22"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="22,30,40,80,100,250">
+            <p:column width="30" headerText="#" sortBy="#{m.id}">
+                <h:outputText value="#{m.id}" />
+            </p:column>
+            <p:column width="70" headerText="Rating" sortBy="#{m.rating}">
+                <h:outputText value="#{m.rating}" />
+            </p:column>
+            <p:column headerText="Movie Name"  sortBy="#{m.name}">
+                <h:outputText value="#{m.name}" />
+            </p:column>
+            <p:column width="110" headerText="Watch date" sortBy="${top250.GetMovieWatchedDate(m.id)}">
+                <h:outputText value="${top250.GetMovieWatchedDate(m.id)}" />
+            </p:column>
+            <p:column width="130" headerText="State">
+                <h:form rendered="${top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  rendered="${top250.checkIfMovieWatched(m.id)}" value="Watched" action="${top250.setMovieNotWatched(m.id)}"/>
+                </h:form>
+                <h:form rendered="${!top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  value="Not watched" action="${top250.setMovieWatched(m.id)}"/>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+            </p:tab>
+            <p:tab title="Watched">
+                <p:dataTable var="m" value="${top250.getDtMoviesWatched()}"
+                     widgetVar="moviesTableWatched"
+                     sortMode="multiple"
+                     resizableColumns="true"
+                     style="margin-bottom:20px;width: 1100px"
+                     rows="22"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="22,30,40,80,100,250">
+            <p:column width="30" headerText="#" sortBy="#{m.id}">
+                <h:outputText value="#{m.id}" />
+            </p:column>
+            <p:column width="70" headerText="Rating" sortBy="#{m.rating}">
+                <h:outputText value="#{m.rating}" />
+            </p:column>
+            <p:column headerText="Movie Name"  sortBy="#{m.name}">
+                <h:outputText value="#{m.name}" />
+            </p:column>
+            <p:column width="110" headerText="Watch date" sortBy="${top250.GetMovieWatchedDate(m.id)}">
+                <h:outputText value="${top250.GetMovieWatchedDate(m.id)}" />
+            </p:column>
+            <p:column width="130" headerText="State">
+                <h:form rendered="${top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  rendered="${top250.checkIfMovieWatched(m.id)}" value="Watched" action="${top250.setMovieNotWatched(m.id)}"/>
+                </h:form>
+                <h:form rendered="${!top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  value="Not watched" action="${top250.setMovieWatched(m.id)}"/>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+            </p:tab>
+            <p:tab title="Not watched">
+                <p:dataTable var="m" value="${top250.getDtMoviesNotWatched()}"
+                     widgetVar="moviesTableNotWatched"
+                     sortMode="multiple"
+                     resizableColumns="true"
+                     style="margin-bottom:20px;width: 1100px"
+                     rows="22"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="22,30,40,80,100,250">
+            <p:column width="30" headerText="#" sortBy="#{m.id}">
+                <h:outputText value="#{m.id}" />
+            </p:column>
+            <p:column width="70" headerText="Rating" sortBy="#{m.rating}">
+                <h:outputText value="#{m.rating}" />
+            </p:column>
+            <p:column headerText="Movie Name"  sortBy="#{m.name}">
+                <h:outputText value="#{m.name}" />
+            </p:column>
+            <p:column width="110" headerText="Watch date" sortBy="${top250.GetMovieWatchedDate(m.id)}">
+                <h:outputText value="${top250.GetMovieWatchedDate(m.id)}" />
+            </p:column>
+            <p:column width="130" headerText="State">
+                <h:form rendered="${top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  rendered="${top250.checkIfMovieWatched(m.id)}" value="Watched" action="${top250.setMovieNotWatched(m.id)}"/>
+                </h:form>
+                <h:form rendered="${!top250.checkIfMovieWatched(m.id)}">
+                    <h:commandButton  value="Not watched" action="${top250.setMovieWatched(m.id)}"/>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+            </p:tab>
+        </p:tabView>
+        
+    </h:body>
+</html>
