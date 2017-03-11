@@ -1,10 +1,9 @@
 # IMDB Top 250 Watch List
 IMDB 250 parhaan elokuvan katselulista.
 
-JavaEE ohjelmointi, syksy 2014 harjoitustyö
 Tekijä: Sami Antila
 
-# Kuvaus
+## Kuvaus
 Internet elokuvatietokannan (IMDB.com) 250 parhaan elokuvan katselulista. Listan avulla
 voidaan seurata kuinka monta elokuvaa listalta on nähnyt ja käyttäjä voi merkitä elokuvan
 listaan katsomisen jälkeen.
@@ -21,7 +20,7 @@ Data tuodaan tietokantaan lukemalla elokuvien tiedot rivi kerrallaan siistityst�
 tiedostosta. Elokuvat tulevat tietodostosta parhaus järjestyksessä ja ne tallennetaan
 tietokantaan samassa järjestyksessä. Elokuvista tallennetaan arvosana ja nimi.
 
-# Ominaisuudet
+## Ominaisuudet
 - Datan hakeminen IMDB:n 250 parhaasta elokuvasta.
 - Tallenna elokuvalista tietokantaan.
 - Lue elokuvalista tietokannasta.
@@ -37,7 +36,7 @@ tietokantaan samassa järjestyksessä. Elokuvista tallennetaan arvosana ja nimi.
 - Montako prosenttia käyttäjä on katsonut listan elokuvista
 - Diagrammi montako elokuvaa käyttäjä on katsonut minäkin päivän
 
-# Tietokanta
+## Tietokanta
 - Users
 - Käyttäjän tiedot
 - Movies
@@ -48,12 +47,14 @@ tietokantaan samassa järjestyksessä. Elokuvista tallennetaan arvosana ja nimi.
 - Elokuvan avain
 - Käyttäjän avain
 
-# Käytetyt teknologiat
+## Käytetyt teknologiat
 - JSF 2.2
 - PrimeFaces 5.1 framework for JSF
 - MySQL 5.6.14
 
-# Luokat
+![alt text](https://github.com/Dolhon/IMDB-Top-250-Watch-List/blob/master/img/tech.JPG "")
+
+## Luokat
 - MovieBean
 - Päätaulu, kaikki käyttöliittymään liittyvä logiikka
 - PrimeFaces toiminnot (chart)
@@ -76,13 +77,23 @@ tietokantaan samassa järjestyksessä. Elokuvista tallennetaan arvosana ja nimi.
 - Yhdistäminen ja yhteyden purku
 - Tietokannan luku, kirjoitus, päivitys
 
-# Käyttöönotto
+![alt text](https://github.com/Dolhon/IMDB-Top-250-Watch-List/blob/master/img/class_diagram.JPG "")
+
+## Käyttöliittymä hahmotelma
+
+![alt text](https://github.com/Dolhon/IMDB-Top-250-Watch-List/blob/master/img/gui_sketch.JPG "")
+
+## Käyttöliittymä toteutunut
+
+![alt text](https://github.com/Dolhon/IMDB-Top-250-Watch-List/blob/master/img/gui.JPG "")
+
+## Käyttöönotto
 Mikäli harjoitustyö halutaan ottaa käyttöön löytyy tietokannasta kopio (mysql dumb -tiedosto)
 palautus zip-tiedoston juuresta. Lisäksi tulee tarkistaa database luokasta tietokannan osoite ja
 salasana. Jos halutaan kokeilla datan tuontia, täytyy sijoittaa palautus zip-tiedoston ratings.list
 tiedosto D:\ aseman juureen tai muuttaa tiedoston sijaintia imdbData luokasta.
 
-# Loppusanat
+## Loppusanat
 Sivustot kuten imdb.com ja rottentomatoes.com suojelevat dataansa. Sivustojen API:a
 suojelevat mahtavan kokoiset lisenssi dokumentit, joihin tämän projektin aikana tutustuttiin
 vain pintapuolisesti. Jos palvelusta tulisi julkinen olisi joko uhrattava paljon miestyötunteja
