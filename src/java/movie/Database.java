@@ -29,8 +29,8 @@ public class Database {
             throws ClassNotFoundException,SQLException {
         Class.forName(dbClassName);
         Properties p = new Properties();
-        p.put("user","root");
-        p.put("password","");
+        p.put("user",""); //fill username
+        p.put("password",""); //fill password
         Connection c = DriverManager.getConnection(CONN,p);
         return c;
     }
